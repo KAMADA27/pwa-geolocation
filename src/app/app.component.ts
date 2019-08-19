@@ -6,5 +6,31 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'pwa-geolocation';
+  
+  watchId;
+  geoLoc;
+
+  showLocation(position) {
+    let latitude = position.coords.latitude;
+    let longitude = position.coords.longitude;
+    alert("Latitude: " + latitude + " Longitude: " + longitude);
+  }
+
+  errorHandler(err) {
+    if (err.code == 1) {
+      alert("Error: Acesso negado!");
+    } else if (err.code == 2) {
+      alert("Error: Posição indisponível!");
+    }
+  }
+
+  getLocationUpdate() {
+    if (navigator.geolocation) {
+      let options = { timeout: 60000 };
+      this.geoLoc = navigator.geolocation;
+      this.watchId = this.geoLoc.watchPosition(this.showLocation, this.errorHandler, options)
+    } else {
+      alert("Browser não suporta geolocalização!");
+    }
+  }
 }
