@@ -26,7 +26,7 @@ export class AppComponent {
 
   getLocationUpdate() {
     if (navigator.geolocation) {
-      let options = { timeout: 60000 };
+      let options = { timeout: 100000 };
       this.geoLoc = navigator.geolocation;
       this.watchId = this.geoLoc.watchPosition(this.showLocation, this.errorHandler, options)
     } else {
