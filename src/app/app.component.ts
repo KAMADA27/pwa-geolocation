@@ -48,13 +48,13 @@ export class AppComponent implements OnInit {
           }, error => {
             observer.error(new Error(error.message));
           },
-          { timeout: 10000 }
+          { timeout: 60000 }
         );
       } else {
         observer.error(new Error('Browser não suporta!'));
       }
     });
-    
+
     this.locationsSubscription = locations.subscribe(data => {
       this.latitude = data.coords.latitude;
       this.longitude = data.coords.longitude;
